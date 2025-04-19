@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.29)
-project(TheBillionaireIndex)
+project(react-ui)
 
 
 set(CMAKE_CXX_STANDARD 20)

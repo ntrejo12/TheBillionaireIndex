@@ -1,0 +1,12 @@
+.outer-box{
+  background-color: #F8F9FA;
+}
+.inner-box{
+  background-color: #ffffff;
+  padding: 10px 30px;
+  margin: 30px;
+}
+
+h1{
+  color: #023047;
+}
