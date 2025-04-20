@@ -62,8 +62,11 @@ int main() {
     string filename = "/Users/yusrahash/Downloads/billionaire_list_20yrs.csv";
     cout << "1" << endl;
     vector<Billionaire> n = Billionaire::readFromFile(filename);
+    mergeSort(n, 0, n.size() - 1);
     for (int i = 0; i < n.size(); i++) {
-        n[i].display();
+        if (n[i].getYear() == "2015") {
+            n[i].display();
+        }
     }
     cout << "2" << endl;
 
