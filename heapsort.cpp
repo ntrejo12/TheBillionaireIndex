@@ -127,10 +127,11 @@ void HeapSort(const string& filename, const string& year, int k) {
     cout << "\n[Heap Sort] Top " << k << " richest in " << year << ":\n";
     int printed = 0;
     int n = (int)filtered.size();
-    for (int idx = n - 1; idx >= 0 && printed < k; --idx, ++printed) {
+    for (int idx = n - 1; idx >= 0 && printed < k; idx--, printed++) {
         filtered[idx].display();
     }
 }
+
 
 int main() {
     string year;
