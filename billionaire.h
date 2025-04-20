@@ -10,7 +10,7 @@
 using namespace std;
 
 class Billionaire {
-public:
+private:
     string name;
     int year;
     double networth;
@@ -18,7 +18,7 @@ public:
     int age;
     string company;
     string country;
-private:
+public:
     Billionaire(string name, int year, double networth, char gender, int age, string company, string country) {
         this->name = name;
         this->year = year;
