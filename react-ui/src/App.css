@@ -1,12 +1,54 @@
 .outer-box{
   background-color: #F8F9FA;
+  /*centers title*/
+  text-align: center;
 }
 .inner-box{
   background-color: #ffffff;
-  padding: 10px 30px;
-  margin: 30px;
+  margin-left: 200px;
+  margin-right: 200px;
+  margin-top: 50px;
+  padding-top: 20px;
+  border-radius: 20px;
 }
 
 h1{
   color: #023047;
+}
+
+.bar-chart{
+  padding: 25px;
+}
+
+.merge-sort{
+  background-color: #57bfc3;
+  /*adds rounded edges*/
+  border-radius: 20px;
+  padding: 25px;
+  max-width: 500px;
+}
+
+.heap-sort{
+  background-color: #b2a8ec;
+  border-radius: 20px;
+  padding: 25px;
+  max-width: 500px;
+}
+
+.sort-inner{
+  background-color: white;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+}
+
+.results{
+  padding-top: 20px;
+}
+
+.row.g-2 {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* spacing between columns */
+  flex-wrap: wrap; /* allows wrapping on smaller screens */
 }

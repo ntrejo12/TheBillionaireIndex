@@ -1,29 +1,9 @@
 import {useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Example from "./BarChart.jsx";
 import './App.css'
 
 function App() {
-    const [count, setCount] = useState(0)
-
-    const currencies = [
-        {
-            value: 'USD',
-            label: '$',
-        },
-        {
-            value: 'EUR',
-            label: '€',
-        },
-        {
-            value: 'BTC',
-            label: '฿',
-        },
-        {
-            value: 'JPY',
-            label: '¥',
-        },
-    ];
-
 
     return (
         <>
@@ -32,8 +12,8 @@ function App() {
                 <div className="inner-box">
                     <div className="row g-2">
                         <div className="col-md-4">
-                            <label htmlFor="exampleFormControlInput1" className="form-label">Select Year</label>
-                            <select className="form-select" aria-label="Default select example">
+                            <label className="form-label">Select Year</label>
+                            <select className="form-select">
                                 <option selected></option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -41,12 +21,34 @@ function App() {
                             </select>
                         </div>
                         <div className="col-md-4">
-                            <label htmlFor="exampleFormControlInput1" className="form-label">Enter the top # of
+                            <label className="form-label">Enter the top # of
                                 billionaires
                                 to
-                                display</label>
-                            <input type="email" className="form-control" id="exampleFormControlInput1"
+                                display (k)</label>
+                            <input className="form-control"
                                    placeholder=" "/>
+                        </div>
+                    </div>
+                    {/*BAR CHART*/}
+                    {/*responsive container adjusts to parents height so it needs to live inside a container*/}
+                    {/*with an explicit height*/}
+                    <div className="bar-chart" style={{width: '100%', height: 400}}>
+                        <Example/>
+                    </div>
+                    <div className="row g-2 results">
+                        <div className="col-md-4">
+                            <div className="merge-sort">
+                                <div className="sort-inner">
+                                    <p>Merge Sort</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-4">
+                            <div className="heap-sort">
+                                <div className="sort-inner">
+                                    <p>Heap Sort</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
