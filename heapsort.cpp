@@ -1,5 +1,5 @@
 //
-// Created by Qingqi  Yuan on 4/18/25.
+// Created by Qingqi (Quinn)  Yuan on 4/18/25.
 //
 
 #include "billionaire.h"
@@ -72,6 +72,7 @@ void heapify(vector<Billionaire>& array, int size, int root) {
     }
 }
 
+
 void heapSortVec(vector<Billionaire>& array) {
     int n = (int) array.size();
     for (int root = n / 2 - 1; root >= 0; root--) {
@@ -84,9 +85,12 @@ void heapSortVec(vector<Billionaire>& array) {
 }
 
 void HeapSort(const string& filename, const string& year, int k) {
+    // loading data
     auto allRecords = Billionaire::readFromFile(filename);
-    unordered_map<string, Billionaire> bestByName;
 
+    // because the data has duplicated info for the same person,
+    // we keep the richest data they have for the given year
+    unordered_map<string, Billionaire> bestByName;
     for (const auto& record : allRecords) {
         if (record.getYear() != year || !isAllDigits(record.getNetworth())) {
             continue;
@@ -103,19 +107,23 @@ void HeapSort(const string& filename, const string& year, int k) {
         }
     }
 
+    // preparing for sorting
     vector<Billionaire> filtered;
     filtered.reserve(bestByName.size());
     for (auto& kv : bestByName) {
         filtered.push_back(kv.second);
     }
 
+    // if the result is empty, output message for the user
     if (filtered.empty()) {
         cout << "No valid data for year " << year << "\n";
         return;
     }
 
+    // filtering the data in ascending order
     heapSortVec(filtered);
 
+    // printing the top k richest in the user-selected year
     cout << "\n[Heap Sort] Top " << k << " richest in " << year << ":\n";
     int printed = 0;
     int n = (int)filtered.size();
