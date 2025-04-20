@@ -95,8 +95,7 @@ void HeapSort(const string& filename, const string& year, int k) {
         auto it = bestByName.find(record.getName());
         if (it == bestByName.end()) {
             bestByName[record.getName()] = record;
-        }
-        else {
+        }else {
             long long existingWorth = stoll(it->second.getNetworth());
             if (worth > existingWorth) {
                 bestByName[record.getName()] = record;
