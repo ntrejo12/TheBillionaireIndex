@@ -1,3 +1,4 @@
-/Users/qingqiyuan/Desktop/TheBillionaireIndex/cmake-build-debug/CMakeFiles/TheBillionaireIndex.dir
+/Users/qingqiyuan/Desktop/TheBillionaireIndex/cmake-build-debug/CMakeFiles/merge_index.dir
+/Users/qingqiyuan/Desktop/TheBillionaireIndex/cmake-build-debug/CMakeFiles/heap_index.dir
 /Users/qingqiyuan/Desktop/TheBillionaireIndex/cmake-build-debug/CMakeFiles/edit_cache.dir
 /Users/qingqiyuan/Desktop/TheBillionaireIndex/cmake-build-debug/CMakeFiles/rebuild_cache.dir
