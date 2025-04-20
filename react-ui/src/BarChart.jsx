@@ -31,6 +31,30 @@ const data = [
         name: 'Page G',
         pv: 4300,
     },
+    {
+        name: 'Page G',
+        pv: 4300,
+    },
+    {
+        name: 'Page G',
+        pv: 6000,
+    },
+    {
+        name: 'Page G',
+        pv: 4300,
+    },
+    {
+        name: 'Page G',
+        pv: 4300,
+    },
+    {
+        name: 'Page G',
+        pv: 4300,
+    },
+    {
+        name: 'Page G',
+        pv: 4300,
+    },
 ];
 
 // component Example that renders a bar chart using recharts
@@ -52,19 +76,13 @@ export default class Example extends PureComponent {
                         bottom: 5,
                     }}
                 >
-                    {/*adds a dashed grid background*/}
-                    <CartesianGrid strokeDasharray="3 3" />
-                    {/*XAxis uses name from each item*/}
-                    {/*in dataset for the labels*/}
-                    <XAxis dataKey="name" />
-                    {/*scales based on value*/}
-                    <YAxis />
-                    {/*shows a tooltip on hover*/}
-                    <Tooltip />
-                    <Legend />
-                    {/*activeBar defines custom styling on hover*/}
-                    <Bar dataKey="pv" fill="#febd56" activeBar={<Rectangle fill="#82ca9d" stroke="blue" />} />
-                    {/*<Bar dataKey="uv" fill="#82ca9d" activeBar={<Rectangle fill="gold" stroke="purple" />} />*/}
+                    <CartesianGrid strokeDasharray="3 3"/> {/*adds a dashed grid background*/}
+                    <XAxis dataKey="name"/> {/*XAxis uses name from each item*/} {/*in dataset for the labels*/}
+                    <YAxis/> {/*scales based on value*/}
+                    <Tooltip/> {/*shows a tooltip on hover*/}
+                    <Legend/>
+                    <Bar dataKey="pv" fill="#febd56" activeBar={<Rectangle fill="#82ca9d"
+                                                                           stroke="blue"/>}/> {/*activeBar defines custom styling on hover*/}
                 </BarChart>
             </ResponsiveContainer>
         );
