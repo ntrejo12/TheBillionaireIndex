@@ -135,7 +135,7 @@ void HeapSort(const string& filename, const string& year, int k) {
 int main() {
     string year;
     int k;
-
+    // make sure data is included in the project folder
     const string filename = "billionaire_list_20yrs.csv";
     cout << "Using data file: " << filename << "\n";
     cout << "Enter year:        "; cin >> year;
