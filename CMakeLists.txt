@@ -5,7 +5,13 @@ set(CMAKE_CXX_STANDARD 14)
 
 include_directories(.)
 
-add_executable(TheBillionaireIndex
+# Merge‑Sort CLI
+add_executable(merge_index
+        merge.cpp
         billionaire.h
+)
+
+add_executable(heap_index
         heapsort.cpp
-        merge.cpp)
+        billionaire.h
+)
