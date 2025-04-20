@@ -1,4 +1,4 @@
-//
+
 // Created by Yusra Hash on 4/19/25.
 //
 #ifndef MERGE_H
@@ -56,16 +56,18 @@ public:
         return country;
     }
     void display() {
+        int counter = 0;
         cout << "Name: " << getName() << endl;
         cout << "Year: " << getYear() << endl;
         cout << "Networth: " << getNetworth() << endl;
         cout << "Age: " << getAge() << endl;
         cout << "Company: " << getCompany() << endl;
         cout << "Country: " << getCountry() << endl;
+
     }
 
     bool operator<=(const Billionaire &other) {
-        return this->year <= other.year;
+        return this->networth <= other.networth;
     }
     static vector<Billionaire> readFromFile(string filename) {
         int count = 0;

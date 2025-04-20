@@ -63,11 +63,14 @@ int main() {
     cout << "1" << endl;
     vector<Billionaire> n = Billionaire::readFromFile(filename);
     mergeSort(n, 0, n.size() - 1);
+    int counter = 0;
     for (int i = 0; i < n.size(); i++) {
         if (n[i].getYear() == "2015") {
             n[i].display();
+            counter++;
         }
     }
+    cout << counter << endl;
     cout << "2" << endl;
 
     return 0;
