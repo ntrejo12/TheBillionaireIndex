@@ -63,7 +63,6 @@ public:
         cout << "Age: " << getAge() << endl;
         cout << "Company: " << getCompany() << endl;
         cout << "Country: " << getCountry() << endl;
-
     }
 
     bool operator<=(const Billionaire &other) {

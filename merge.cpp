@@ -2,6 +2,8 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <chrono>
+using namespace chrono;
 using namespace std;
 
 //code from geeksforgeeks
@@ -56,8 +58,49 @@ void mergeSort(vector<Billionaire>& data, int left, int right) {
 }
 
 
+void finalMerge(string filename, string year, int  k) {
+    auto start = high_resolution_clock::now();
+    auto allRecords = Billionaire::readFromFile(filename);
+    vector<Billionaire> updatedData;
+    for (int i = 1; i < allRecords.size(); i++) {
+        if (allRecords[i].getName() ==allRecords[i-1].getName()) {
+            continue;
+        }
+        updatedData.push_back(allRecords[i]);
+    }
+    int tracker = 0;
+    mergeSort(updatedData, 0, updatedData.size() - 1);
+    for (int i = 0; i < allRecords.size(); i++) {
+        if (updatedData[i].getYear() == year) {
+            cout << endl;
+            updatedData[i].display();
+            tracker++;
+        }
+        if (tracker == k) {
+            break;
+        }
+    }
+
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+    cout << endl;
+    cout << "Merge Sort Duration: " << duration.count() << " microseconds" << endl;
+}
 
 int main() {
+    string year;
+    int k;
+    // make sure data is included in the project folder.
+    const string filename = "/Users/yusrahash/Downloads/billionaire_list_20yrs.csv";
+    cout << "Using data file: " << filename << "\n";
+    cout << "Enter year: "; cin >> year;
+    cout << "Enter k: "; cin >> k;
+
+    finalMerge(filename, year, k);
+    return 0;
+}
+
+/*int main() {
     cout << "Hello, World!" << endl;
     string filename = "/Users/yusrahash/Downloads/billionaire_list_20yrs.csv";
     cout << "1" << endl;
@@ -75,3 +118,4 @@ int main() {
 
     return 0;
 }
+*/
