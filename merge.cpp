@@ -110,8 +110,11 @@ void finalMerge(string filename, string year, int  k) {
     cout << "\n[Merge Sort] Top " << k << " richest in " << year << ":\n";
     int printed = 0;
     int n = (int)filtered.size();
+    int rank =0;
     for (int idx = n - 1; idx >= 0 && printed < k; --idx, ++printed) {
+        rank++;
         cout << endl;
+        cout << rank << ". ";
         filtered[idx].display();
     }
 
