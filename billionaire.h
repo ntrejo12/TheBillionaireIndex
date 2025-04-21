@@ -59,7 +59,7 @@ public:
         int counter = 0;
         cout << "Name: " << getName() << endl;
         cout << "Year: " << getYear() << endl;
-        cout << "Networth: " << getNetworth() << endl;
+        cout << "Annual Income: " << getNetworth() << endl;
         cout << "Age: " << getAge() << endl;
         cout << "Company: " << getCompany() << endl;
         cout << "Country: " << getCountry() << endl;
