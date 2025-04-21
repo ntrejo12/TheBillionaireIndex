@@ -1,12 +1,29 @@
 #include "billionaire.h"
 #include <string>
 #include <vector>
+#include <algorithm>
 #include <iostream>
 #include <chrono>
 using namespace chrono;
 using namespace std;
 
-//code from geeksforgeeks
+
+
+static bool isAllDigits(const string& s) {
+    if (s.empty()) {
+        return false;
+    }
+    for (char c : s) {
+        unsigned char uc = static_cast<unsigned char>(c);
+
+        if (!isdigit(uc)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+//following merge code from geeksforgeeks
 //https://www.geeksforgeeks.org/merge-sort/
 
 void merge(vector<Billionaire>& data, int left, int mid, int right) {
@@ -25,7 +42,9 @@ void merge(vector<Billionaire>& data, int left, int mid, int right) {
     int k = left;
 
     while (i < n1 && j < n2) {
-        if (L[i] <= R[j]) {
+        long long LNetworth = stoll(L[i].getNetworth());
+        long long RNetworth = stoll(R[j].getNetworth());
+        if (LNetworth<= RNetworth) {
             data[k] = L[i];
             i++;
         }
@@ -38,7 +57,7 @@ void merge(vector<Billionaire>& data, int left, int mid, int right) {
     while (i < n1) {
         data[k] = L[i];
         i++;
-        j++;
+        k++;
     }
     while (j < n2) {
         data[k] = R[j];
@@ -61,24 +80,39 @@ void mergeSort(vector<Billionaire>& data, int left, int right) {
 void finalMerge(string filename, string year, int  k) {
     auto start = high_resolution_clock::now();
     auto allRecords = Billionaire::readFromFile(filename);
-    vector<Billionaire> updatedData;
-    for (int i = 1; i < allRecords.size(); i++) {
-        if (allRecords[i].getName() ==allRecords[i-1].getName()) {
+    unordered_map<string, Billionaire> bestByName;
+    for (const auto& record : allRecords) {
+        if (record.getYear() != year || !isAllDigits(record.getNetworth())) {
             continue;
         }
-        updatedData.push_back(allRecords[i]);
+        long long worth = stoll(record.getNetworth());
+        auto it = bestByName.find(record.getName());
+        if (it == bestByName.end()) {
+            bestByName[record.getName()] = record;
+        }else {
+            long long existingWorth = stoll(it->second.getNetworth());
+            if (worth > existingWorth) {
+                bestByName[record.getName()] = record;
+            }
+        }
+}
+
+    vector<Billionaire> filtered;
+    filtered.reserve(bestByName.size());
+    for (auto& kv : bestByName) {
+        filtered.push_back(kv.second);
     }
-    int tracker = 0;
-    mergeSort(updatedData, 0, updatedData.size() - 1);
-    for (int i = 0; i < allRecords.size(); i++) {
-        if (updatedData[i].getYear() == year) {
-            cout << endl;
-            updatedData[i].display();
-            tracker++;
-        }
-        if (tracker == k) {
-            break;
-        }
+    if (filtered.empty()) {
+        cout << "No valid data for year " << year << "\n";
+        return;
+    }
+    mergeSort(filtered, 0, filtered.size() - 1);
+    cout << "\n[Merge Sort] Top " << k << " richest in " << year << ":\n";
+    int printed = 0;
+    int n = (int)filtered.size();
+    for (int idx = n - 1; idx >= 0 && printed < k; --idx, ++printed) {
+        cout << endl;
+        filtered[idx].display();
     }
 
     auto stop = high_resolution_clock::now();
@@ -100,22 +134,3 @@ int main() {
     return 0;
 }
 
-/*int main() {
-    cout << "Hello, World!" << endl;
-    string filename = "/Users/yusrahash/Downloads/billionaire_list_20yrs.csv";
-    cout << "1" << endl;
-    vector<Billionaire> n = Billionaire::readFromFile(filename);
-    mergeSort(n, 0, n.size() - 1);
-    int counter = 0;
-    for (int i = 0; i < n.size(); i++) {
-        if (n[i].getYear() == "2015") {
-            n[i].display();
-            counter++;
-        }
-    }
-    cout << counter << endl;
-    cout << "2" << endl;
-
-    return 0;
-}
-*/
