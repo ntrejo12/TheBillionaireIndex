@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+cmake-build-debug/
+CMakeFiles/
+.cmake/
+Testing/
+*.ninja
