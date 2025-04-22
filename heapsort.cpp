@@ -145,6 +145,7 @@ void HeapSort(const string& filename, const string& year, int k) {
     // stop the timer and display the amount of time the heap sort takes
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop-start);
+
     cout<<"\nHeap Sort Duration: "<<duration.count()<<" microseconds.\n";
 
 }
