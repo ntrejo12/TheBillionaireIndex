@@ -3,3 +3,4 @@ CMakeFiles/
 .cmake/
 Testing/
 *.ninja
+.idea
