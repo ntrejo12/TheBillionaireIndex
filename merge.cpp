@@ -128,7 +128,7 @@ int main() {
     string year;
     int k;
     // make sure data is included in the project folder.
-    const string filename = "/Users/yusrahash/Downloads/billionaire_list_20yrs.csv";
+    const string filename = "billionaire_list_20yrs.csv";
     cout << "Using data file: " << filename << "\n";
     cout << "Enter year: "; cin >> year;
     cout << "Enter k: "; cin >> k;
