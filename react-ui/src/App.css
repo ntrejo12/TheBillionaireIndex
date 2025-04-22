@@ -1,0 +1,54 @@
+.outer-box{
+  background-color: #F8F9FA;
+  border: 1px solid #F8F9FA;
+  max-height: 100vh; /* takes up whole screen height*/
+
+}
+.inner-box{
+  background-color: #ffffff;
+  margin: 50px auto; /*spacing around the inner-box*/
+  padding: 10px; /*distance btw divs to the edges*/
+  border-radius: 20px; /*adds rounded edges*/
+  width: 90%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  text-align: center;
+  max-height: 90vh;
+  overflow-y: auto; /*adds a scrollbar so elements don't overflow outside the inner-box*/
+}
+
+h1{
+  color: #023047;
+}
+
+.bar-chart{
+  width: 100%;
+  height: 400px;
+}
+
+.merge-sort{
+  background-color: #57bfc3;
+  border-radius: 20px; /*adds rounded edges*/
+  padding: 25px;
+}
+
+.heap-sort{
+  background-color: #b2a8ec;
+  border-radius: 20px;
+  padding: 25px;
+}
+
+.sort-inner{
+  background-color: white;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+}
+
+.row.g-2 {
+  display: flex; /*arrange input fields in a row by default*/
+  justify-content: center; /*center horizontally*/
+  gap: 20px; /* spacing between columns */
+  flex-wrap: wrap; /* allows wrapping on smaller screens */
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

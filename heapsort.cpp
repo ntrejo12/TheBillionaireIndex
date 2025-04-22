@@ -9,7 +9,9 @@
 #include <unordered_map>
 #include <algorithm>
 #include <cctype>
+#include <chrono>
 using namespace std;
+using namespace chrono;
 
 // A helper function
 // returns true if s is nonempty and every character in s is a digit
@@ -32,6 +34,7 @@ static bool isAllDigits(const string& s) {
 void heapify(vector<Billionaire>& array, int size, int root) {
     int largest = root;
     long long rootWorth;
+
     if (isAllDigits(array[root].getNetworth())) {
         rootWorth = stoll(array[root].getNetworth());
     } else {
@@ -53,6 +56,7 @@ void heapify(vector<Billionaire>& array, int size, int root) {
             rootWorth = leftWorth;
         }
     }
+
     // if there is right child, parse and compare
     if (right < size) {
         long long rightWorth;
@@ -85,6 +89,8 @@ void heapSortVec(vector<Billionaire>& array) {
 }
 
 void HeapSort(const string& filename, const string& year, int k) {
+    // for the timing:
+    auto start = high_resolution_clock ::now();
     // loading data
     auto allRecords = Billionaire::readFromFile(filename);
 
@@ -97,6 +103,7 @@ void HeapSort(const string& filename, const string& year, int k) {
         }
         long long worth = stoll(record.getNetworth());
         auto it = bestByName.find(record.getName());
+
         if (it == bestByName.end()) {
             bestByName[record.getName()] = record;
         }else {
@@ -110,8 +117,8 @@ void HeapSort(const string& filename, const string& year, int k) {
     // preparing for sorting
     vector<Billionaire> filtered;
     filtered.reserve(bestByName.size());
-    for (auto& kv : bestByName) {
-        filtered.push_back(kv.second);
+    for (const auto& [_, record] : bestByName) {
+        filtered.push_back(record);
     }
 
     // if the result is empty, output message for the user
@@ -127,10 +134,22 @@ void HeapSort(const string& filename, const string& year, int k) {
     cout << "\n[Heap Sort] Top " << k << " richest in " << year << ":\n";
     int printed = 0;
     int n = (int)filtered.size();
-    for (int idx = n - 1; idx >= 0 && printed < k; --idx, ++printed) {
+    int rank = 0;
+    // printing the rank of billionaires.
+    for (int idx = n - 1; idx >= 0 && printed < k; idx--, printed++) {
+        rank ++;
+        cout << endl;
+        cout << rank<< ". ";
         filtered[idx].display();
     }
+    // stop the timer and display the amount of time the heap sort takes
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop-start);
+
+    cout<<"\nHeap Sort Duration: "<<duration.count()<<" microseconds.\n";
+
 }
+
 
 int main() {
     string year;
