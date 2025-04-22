@@ -6,6 +6,31 @@ import './App.css'
 function App() {
     const [year, setYear] = useState('');
     const [K, setK] = useState('');
+    const [chartData, setChartData] = useState([]);
+    const [time, setTime] = useState(null);
+    const [heapTime, setHeapTime] = useState(null);
+
+    const fetchData = async() => {
+        if (!year || !K) return;
+
+        const [mergeRes, heapRes] = await Promise.all([
+            fetch(`http://localhost:18080/top-billionaires?year=${year}&k=${K}`),
+            fetch(`http://localhost:18080/heap-duration?year=${year}&k=${K}`)
+        ])
+
+        const mergeData = await mergeRes.json();
+        const heapData = await heapRes.json();
+
+        const formatted = mergeData.billionaires.map(b => ({
+            name: b.name,
+            annual_income: parseInt(b.income)
+        }));
+
+        setChartData(formatted);
+        setTime(mergeData.duration_microseconds);
+        setHeapTime(heapData.duration_microseconds);
+    }
+
 
     return (
         <>
@@ -58,22 +83,25 @@ function App() {
                     {/*SOURCE: crowbait on github recharts chart title #478*/}
                     <div className="bar-chart">
                         <text x={500 / 2} y={20} fill="black" textAnchor="middle" dominantBaseline="central">
-                            <tspan fontSize="20">Top {K || 'K'} Billionaires by Income in {year || '[Year]'}</tspan>
+                            <tspan fontSize="20">Top {K || 'K'} Billionaires by Annual Income (USD) in {year || '[Year]'}</tspan>
                         </text>
-                        <Example/>
+                        <div>
+                            <button className="start" onClick={fetchData}>Go!</button>
+                        </div>
+                        <Example data={chartData}/>
                     </div>
                     <div className="row g-2 results">
                         <div className="col-md-4">
                             <div className="merge-sort">
                             <div className="sort-inner">
-                                    <p>Merge Sort</p>
+                                    <p>Merge Sort: {time !== null ? (time / 1_000_000).toFixed(2) : "–"} s</p>
                                 </div>
                             </div>
                         </div>
                         <div className="col-md-4">
                             <div className="heap-sort">
                                 <div className="sort-inner">
-                                    <p>Heap Sort</p>
+                                    <p>Heap Sort: {heapTime !== null ? (heapTime / 1_000_000).toFixed(2) : "–"} s</p>
                                 </div>
                             </div>
                         </div>
