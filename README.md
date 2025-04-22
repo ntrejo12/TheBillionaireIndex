@@ -27,7 +27,9 @@ algorithms optimized for top-k selection.
 </ul>
 
 <H2> Citation </H2>
-
+<H2> Important </H2>
+Must download include folder from https://github.com/CrowCpp/Crow to run project. 
+  
 <ul>
   <li>GeeksforGeeks. (n.d.). <i>Heap Sort</i>. https://www.geeksforgeeks.org/heap-sort/</li>
   <li>GeeksforGeeks. (n.d.). <i>Merge Sort</i>. https://www.geeksforgeeks.org/merge-sort/</li>
