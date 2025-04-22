@@ -1,19 +1,17 @@
-cmake_minimum_required(VERSION 3.29)
-project(react-ui)
+cmake_minimum_required(VERSION 3.26)
+project(TheBillionaireIndex)
 
+set(CMAKE_CXX_STANDARD 14)
 
-set(CMAKE_CXX_STANDARD 20)
+include_directories(.)
 
-
-## In most cases better set in the CMake cache
-set(SFML_DIR "<sfml root prefix>/lib/cmake/SFML")
-
-
-find_package(SFML 2.5.1 COMPONENTS system window graphics audio REQUIRED)
-
-
-add_executable(TheBillionaireIndex
-        src/main.cpp)
-
-
-target_link_libraries(TheBillionaireIndex sfml-system sfml-window sfml-graphics sfml-audio)
+# Merge‑Sort main
+add_executable(merge_index
+        merge.cpp
+        billionaire.h
+)
+# Heap-sort main
+add_executable(heap_index
+        heapsort.cpp
+        billionaire.h
+)
