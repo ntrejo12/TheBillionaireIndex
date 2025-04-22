@@ -95,7 +95,7 @@ void finalMerge(string filename, string year, int  k) {
                 bestByName[record.getName()] = record;
             }
         }
-}
+    }
 
     vector<Billionaire> filtered;
     filtered.reserve(bestByName.size());
@@ -136,4 +136,3 @@ int main() {
     finalMerge(filename, year, k);
     return 0;
 }
-
