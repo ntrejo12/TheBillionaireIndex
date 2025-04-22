@@ -121,7 +121,9 @@ void finalMerge(string filename, string year, int  k) {
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start);
     cout << endl;
-    cout << "Merge Sort Duration: " << duration.count() << " microseconds" << endl;
+    cout << "Merge Sort Duration: " << endl;
+    cout << duration.count() << " microseconds" << endl;
+
 }
 
 int main() {
