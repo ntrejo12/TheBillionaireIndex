@@ -1,14 +1,13 @@
 
 // Created by Yusra Hash on 4/19/25.
 //
-#ifndef MERGE_H
-#define MERGE_H
-#endif //MERGE_H
+#pragma once
 #include <sstream>
 #include <fstream>
 #include <iostream>
 #include <string>
 #include <vector>
+#include "include/crow.h"
 using namespace std;
 
 class Billionaire {
@@ -106,7 +105,4 @@ public:
         }
         return billionaireList;
     }
-
-
-
 };

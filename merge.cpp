@@ -3,6 +3,7 @@
 #include <vector>
 #include <algorithm>
 #include <iostream>
+#include "include/crow.h"
 #include <chrono>
 using namespace chrono;
 using namespace std;
@@ -124,16 +125,51 @@ void finalMerge(string filename, string year, int  k) {
     cout << "Merge Sort Duration: " << duration.count() << " microseconds" << endl;
 }
 
-int main() {
-    string year;
-    int k;
-    // make sure data is included in the project folder.
-    const string filename = "/Users/yusrahash/Downloads/billionaire_list_20yrs.csv";
-    cout << "Using data file: " << filename << "\n";
-    cout << "Enter year: "; cin >> year;
-    cout << "Enter k: "; cin >> k;
+crow::json::wvalue finalMergeAsJSON(const string& filename, const string& year, int k) {
+    auto start = high_resolution_clock::now();
+    auto allRecords = Billionaire::readFromFile(filename);
+    unordered_map<string, Billionaire> bestByName;
 
-    finalMerge(filename, year, k);
-    return 0;
+    for (const auto& record : allRecords) {
+        if (record.getYear() != year || !isAllDigits(record.getNetworth())) {
+            continue;
+        }
+
+        long long worth = stoll(record.getNetworth());
+        auto it = bestByName.find(record.getName());
+        if (it == bestByName.end() || worth > stoll(it->second.getNetworth())) {
+            bestByName[record.getName()] = record;
+        }
+    }
+
+    vector<Billionaire> filtered;
+    for (auto& kv : bestByName) {
+        filtered.push_back(kv.second);
+    }
+
+    mergeSort(filtered, 0, filtered.size() - 1);
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+
+    crow::json::wvalue result;
+    for (int i = filtered.size() - 1, count = 0; i >= 0 && count < k; --i, ++count) {
+        result["billionaires"][count]["name"] = filtered[i].getName();
+        result["billionaires"][count]["income"] = filtered[i].getNetworth();
+    }
+    result["duration_microseconds"] = duration.count();
+    return result;
 }
+
+// int main() {
+//     string year;
+//     int k;
+//     // make sure data is included in the project folder.
+//     const string filename = "/Users/yusrahash/Downloads/billionaire_list_20yrs.csv";
+//     cout << "Using data file: " << filename << "\n";
+//     cout << "Enter year: "; cin >> year;
+//     cout << "Enter k: "; cin >> k;
+//
+//     finalMerge(filename, year, k);
+//     return 0;
+// }
 
