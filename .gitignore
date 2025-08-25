@@ -4,3 +4,4 @@ CMakeFiles/
 Testing/
 *.ninja
 .idea
+node_modules/
